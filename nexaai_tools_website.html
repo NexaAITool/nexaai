@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b18">
+<meta name="description" content="Discover useful AI tools for writing, images, video, voice, study, and productivity.">
+<title>NexaAI — Discover Your Next AI Tool</title>
+<style>
+:root{--bg:#090b18;--panel:#11152a;--panel2:#151a32;--text:#f5f6ff;--muted:#a7aecb;--purple:#9b7bff;--cyan:#68e1fd;--line:rgba(255,255,255,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 15% 0%,rgba(113,76,255,.19),transparent 36%),radial-gradient(ellipse at 90% 10%,rgba(38,190,226,.10),transparent 30%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
+a{color:inherit;text-decoration:none}.wrap{width:min(1160px,92%);margin:auto}
+header{display:flex;align-items:center;justify-content:space-between;padding:22px 0;border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-weight:850;font-size:1.35rem;letter-spacing:-.7px}.logo{display:grid;place-items:center;width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,var(--purple),var(--cyan));color:#080b19;font-weight:950;box-shadow:0 6px 28px #8e70ff44}
+.brand span:last-child{color:var(--cyan)}nav{display:flex;gap:24px;color:var(--muted);font-size:.92rem}nav a:hover{color:white}
+.hero{text-align:center;padding:76px 0 44px}.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid #a28aff44;border-radius:999px;color:#d4c8ff;background:#9b7bff12;font-size:.82rem}
+.hero h1{font-size:clamp(2.45rem,6vw,4.8rem);line-height:1.03;letter-spacing:-.06em;margin:22px auto 18px;max-width:850px}.gradient{background:linear-gradient(90deg,#c4aaff,#78e5ff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{max-width:650px;margin:0 auto;color:var(--muted);font-size:1.08rem;line-height:1.7}
+.searchbox{margin:30px auto 0;max-width:660px;display:flex;gap:10px;padding:8px;background:#11152ad9;border:1px solid #ffffff20;border-radius:17px;box-shadow:0 18px 60px #0005}
+.searchbox input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:white;padding:12px;font:inherit}.searchbox input::placeholder{color:#838ba9}.searchbox button{border:0;border-radius:11px;padding:0 19px;background:linear-gradient(135deg,var(--purple),#6dbeff);color:#080b18;font-weight:800;cursor:pointer}
+.stats{display:flex;justify-content:center;gap:30px;margin-top:24px;color:var(--muted);font-size:.86rem}.stats strong{color:white}
+main{padding-bottom:70px}.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:25px 0 20px}.section-head h2{font-size:1.65rem;letter-spacing:-.04em;margin:0}.section-head p{color:var(--muted);margin:8px 0 0;font-size:.92rem}
+.filters{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0 25px}.filter{border:1px solid var(--line);background:#ffffff05;color:var(--muted);padding:9px 14px;border-radius:999px;cursor:pointer;font:inherit;font-size:.86rem}.filter.active,.filter:hover{background:#9b7bff22;border-color:#9b7bff80;color:#fff}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:15px}.card{position:relative;display:flex;flex-direction:column;min-height:222px;padding:20px;border:1px solid var(--line);border-radius:20px;background:linear-gradient(145deg,#171b33d9,#101326e8);transition:transform .2s,border-color .2s,background .2s;overflow:hidden}.card:hover{transform:translateY(-4px);border-color:#9b7bff80;background:linear-gradient(145deg,#202143,#11162b)}.card-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.icon{width:47px;height:47px;border-radius:15px;display:grid;place-items:center;font-size:1.4rem;background:linear-gradient(135deg,#9b7bff27,#68e1fd18);border:1px solid #ffffff13}.tag{font-size:.72rem;color:#b8f2ff;background:#68e1fd13;border:1px solid #68e1fd2c;padding:5px 8px;border-radius:999px}.card h3{margin:17px 0 7px;font-size:1.08rem}.card p{color:var(--muted);font-size:.9rem;line-height:1.55;margin:0 0 20px;flex:1}.visit{display:flex;align-items:center;justify-content:space-between;color:#cfc2ff;font-weight:750;font-size:.88rem}.visit span:last-child{font-size:1.1rem;transition:transform .2s}.card:hover .visit span:last-child{transform:translate(3px,-3px)}
+.empty{display:none;text-align:center;padding:50px 10px;color:var(--muted)}.notice{margin:28px 0 0;border:1px solid #68e1fd25;background:#68e1fd09;border-radius:16px;padding:16px 18px;color:var(--muted);font-size:.86rem;line-height:1.6}.notice strong{color:#dffaff}
+footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);font-size:.85rem}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:13px}.hero{padding-top:55px}}
+@media(max-width:540px){nav a:not(:last-child){display:none}.hero{padding:45px 0 30px}.hero p{font-size:1rem}.searchbox button{padding:0 13px}.stats{gap:14px;flex-wrap:wrap}.grid{grid-template-columns:1fr}.card{min-height:195px}.section-head{align-items:start;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <a class="brand" href="#" aria-label="NexaAI home"><span class="logo">N</span><span>Nexa<span>AI</span></span></a>
+  <nav aria-label="Main navigation"><a href="#tools">Explore tools</a><a href="#about">About</a></nav>
+</header>
+<section class="hero">
+  <div class="pill">✦ Your shortcut to smarter work</div>
+  <h1>Find the right AI tool.<br><span class="gradient">Make something amazing.</span></h1>
+  <p>A hand-picked directory of useful AI tools for creativity, content, learning, and everyday productivity — all in one place.</p>
+  <form class="searchbox" id="searchForm" role="search">
+    <input id="searchInput" type="search" placeholder="Search tools, e.g. image, writing, video…" aria-label="Search AI tools">
+    <button type="submit">Search ↗</button>
+  </form>
+  <div class="stats"><span><strong>6</strong> categories</span><span><strong id="toolCount">18</strong> useful tools</span><span>✦ Curated for you</span></div>
+</section>
+<main id="tools">
+  <div class="section-head"><div><h2>Explore AI tools</h2><p>Choose a category or search for what you need.</p></div></div>
+  <div class="filters" aria-label="Filter by category">
+    <button class="filter active" data-category="All">All tools</button>
+    <button class="filter" data-category="Chat">💬 Chat & research</button>
+    <button class="filter" data-category="Image">🎨 Image</button>
+    <button class="filter" data-category="Video">🎬 Video</button>
+    <button class="filter" data-category="Writing">✍️ Writing</button>
+    <button class="filter" data-category="Voice">🎙️ Voice & music</button>
+    <button class="filter" data-category="Study">📚 Study</button>
+  </div>
+  <div class="grid" id="toolGrid">
+    <a class="card" data-category="Chat" data-search="chatgpt chat assistant writing ideas questions" href="https://chatgpt.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">💬</div><span class="tag">Chat</span></div><h3>ChatGPT</h3><p>Brainstorm ideas, ask questions, draft content, and explore topics.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Chat" data-search="google gemini assistant research writing" href="https://gemini.google.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">✦</div><span class="tag">Chat</span></div><h3>Google Gemini</h3><p>Get help with ideas, explanations, planning, and creative tasks.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Chat" data-search="perplexity research answers sources search" href="https://www.perplexity.ai/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🔎</div><span class="tag">Research</span></div><h3>Perplexity</h3><p>Research questions and discover answers with linked sources.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Chat" data-search="microsoft copilot assistant productivity" href="https://copilot.microsoft.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🪄</div><span class="tag">Assistant</span></div><h3>Microsoft Copilot</h3><p>Get help with everyday questions, ideas, and productivity tasks.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Image" data-search="adobe firefly image generator design" href="https://firefly.adobe.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🎨</div><span class="tag">Image</span></div><h3>Adobe Firefly</h3><p>Explore AI-powered image creation and creative design features.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Image" data-search="ideogram image generator text posters graphics" href="https://ideogram.ai/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🖼️</div><span class="tag">Image</span></div><h3>Ideogram</h3><p>Create visual concepts, graphics, and image designs from prompts.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Image" data-search="leonardo ai image art generator" href="https://leonardo.ai/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🌌</div><span class="tag">Image</span></div><h3>Leonardo AI</h3><p>Explore AI artwork and visual assets for creative projects.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Image" data-search="canva design presentations thumbnails social graphics" href="https://www.canva.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🪄</div><span class="tag">Design</span></div><h3>Canva</h3><p>Design thumbnails, posters, presentations, and social graphics.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Video" data-search="runway ai video generation editing" href="https://runwayml.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🎬</div><span class="tag">Video</span></div><h3>Runway</h3><p>Discover AI-assisted video creation and creative editing tools.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Video" data-search="pika ai video effects generation" href="https://pika.art/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🎞️</div><span class="tag">Video</span></div><h3>Pika</h3><p>Experiment with AI video generation and playful visual effects.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Video" data-search="capcut video editor captions social media" href="https://www.capcut.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">✂️</div><span class="tag">Editing</span></div><h3>CapCut</h3><p>Edit videos and create content with a range of creator tools.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Writing" data-search="grammarly grammar spelling rewrite writing" href="https://www.grammarly.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">✍️</div><span class="tag">Writing</span></div><h3>Grammarly</h3><p>Improve clarity, spelling, grammar, and tone in your writing.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Writing" data-search="claude writing analysis assistant" href="https://claude.ai/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">📝</div><span class="tag">Writing</span></div><h3>Claude</h3><p>Work through drafts, explanations, and longer writing projects.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Writing" data-search="quillbot paraphrase summarize grammar" href="https://quillbot.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🔤</div><span class="tag">Writing</span></div><h3>QuillBot</h3><p>Explore paraphrasing, summarizing, and writing assistance tools.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Voice" data-search="elevenlabs ai voice text to speech narration" href="https://elevenlabs.io/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🎙️</div><span class="tag">Voice</span></div><h3>ElevenLabs</h3><p>Explore AI voice, text-to-speech, and narration features.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Voice" data-search="suno ai music song generator" href="https://suno.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🎵</div><span class="tag">Music</span></div><h3>Suno</h3><p>Experiment with AI-assisted music and song creation.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Study" data-search="notebooklm study notes sources summaries" href="https://notebooklm.google.com/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">📚</div><span class="tag">Study</span></div><h3>NotebookLM</h3><p>Organize source material and create study-friendly summaries.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+    <a class="card" data-category="Study" data-search="khan academy khanmigo learning education" href="https://www.khanacademy.org/" target="_blank" rel="noopener noreferrer"><div class="card-top"><div class="icon">🎓</div><span class="tag">Learning</span></div><h3>Khan Academy</h3><p>Learn concepts and practise skills across school subjects.</p><div class="visit"><span>Visit tool</span><span>↗</span></div></a>
+  </div>
+  <div class="empty" id="emptyState">No tools found. Try another search or category.</div>
+  <div class="notice" id="about"><strong>Quick note:</strong> NexaAI is a directory of links to third-party services, not an AI model itself. Some services may require an account, have usage limits, or offer paid features. Availability and terms can change; check each service's official website before using it.</div>
+</main>
+<footer><div class="foot"><span>© <span id="year"></span> NexaAI Directory</span><span>Discover • Create • Learn</span></div></footer>
+</div>
+<script>
+const input=document.getElementById('searchInput'), cards=[...document.querySelectorAll('.card')], filters=[...document.querySelectorAll('.filter')], empty=document.getElementById('emptyState');let category='All';
+function update(){const q=input.value.trim().toLowerCase();let count=0;cards.forEach(card=>{const matchesCategory=category==='All'||card.dataset.category===category;const matchesQuery=!q||(card.innerText+' '+card.dataset.search).toLowerCase().includes(q);const show=matchesCategory&&matchesQuery;card.style.display=show?'flex':'none';if(show)count++});empty.style.display=count?'none':'block';document.getElementById('toolCount').textContent=cards.length}
+filters.forEach(btn=>btn.addEventListener('click',()=>{category=btn.dataset.category;filters.forEach(b=>b.classList.toggle('active',b===btn));update()}));
+document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();update();document.getElementById('tools').scrollIntoView({behavior:'smooth'})});
+input.addEventListener('input',update);document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
