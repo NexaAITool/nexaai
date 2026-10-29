@@ -26,6 +26,29 @@ main{padding-bottom:70px}.section-head{display:flex;align-items:end;justify-cont
 footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);font-size:.85rem}.foot{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
 @media(max-width:800px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}nav{gap:13px}.hero{padding-top:55px}}
 @media(max-width:540px){nav a:not(:last-child){display:none}.hero{padding:45px 0 30px}.hero p{font-size:1rem}.searchbox button{padding:0 13px}.stats{gap:14px;flex-wrap:wrap}.grid{grid-template-columns:1fr}.card{min-height:195px}.section-head{align-items:start;flex-direction:column}}
+
+/* NexaAI Voice Studio */
+.voice-studio{margin:8px 0 42px;padding:clamp(20px,4vw,34px);border:1px solid #9b7bff45;border-radius:24px;background:linear-gradient(145deg,#171b33e8,#101326f2);box-shadow:0 18px 60px #0003}
+.voice-studio .voice-kicker{color:var(--cyan);font-size:.78rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.voice-studio h2{font-size:clamp(1.6rem,4vw,2.2rem);margin:10px 0 8px;letter-spacing:-.04em}
+.voice-studio .voice-intro{color:var(--muted);line-height:1.65;margin:0 0 22px}
+.voice-form{display:grid;gap:15px}
+.voice-form textarea{width:100%;min-height:145px;resize:vertical;background:#090d1d;border:1px solid #ffffff20;border-radius:14px;padding:15px;color:var(--text);font:inherit;line-height:1.6;outline:none}
+.voice-form textarea:focus,.voice-form select:focus,.voice-form input:focus{border-color:var(--purple);outline:2px solid #9b7bff22}
+.voice-controls{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.voice-field{display:grid;gap:7px;color:var(--muted);font-size:.86rem}
+.voice-field select{width:100%;background:#090d1d;border:1px solid #ffffff20;border-radius:11px;padding:11px;color:var(--text);font:inherit}
+.voice-range-row{display:flex;align-items:center;gap:10px}.voice-range-row input{width:100%;accent-color:var(--purple)}.voice-range-row output{min-width:35px;color:var(--text)}
+.voice-actions{display:flex;flex-wrap:wrap;gap:10px}
+.voice-btn{border:1px solid #ffffff20;border-radius:11px;padding:12px 16px;font:inherit;font-weight:800;cursor:pointer;color:var(--text);background:#ffffff0a}
+.voice-btn.primary{background:linear-gradient(135deg,var(--purple),#6dbeff);color:#080b18;border:0}
+.voice-btn:disabled{opacity:.5;cursor:not-allowed}
+.voice-status{min-height:24px;color:var(--muted);font-size:.88rem;line-height:1.5}
+.voice-status.error{color:#ffb4b4}.voice-status.success{color:#a9f5d0}
+.voice-note{margin-top:8px;padding:13px 15px;border:1px solid #68e1fd25;border-radius:12px;color:var(--muted);font-size:.82rem;line-height:1.6}
+.voice-note strong{color:#dffaff}
+@media(max-width:540px){.voice-controls{grid-template-columns:1fr}.voice-actions .voice-btn{flex:1}}
+
 </style>
 </head>
 <body>
@@ -44,6 +67,46 @@ footer{border-top:1px solid var(--line);padding:26px 0 36px;color:var(--muted);f
   </form>
   <div class="stats"><span><strong>6</strong> categories</span><span><strong id="toolCount">18</strong> useful tools</span><span>✦ Curated for you</span></div>
 </section>
+
+<section class="voice-studio" id="voice-studio" aria-labelledby="voice-title">
+  <div class="voice-kicker">✦ NexaAI Voice Studio</div>
+  <h2 id="voice-title">Turn your text into speech</h2>
+  <p class="voice-intro">Type or paste your script, choose Hindi or English, and listen. Browser voice works without an API key; natural AI MP3 generation can be connected through a secure backend.</p>
+  <form class="voice-form" id="voiceForm">
+    <label class="voice-field" for="voiceText">Your text
+      <textarea id="voiceText" maxlength="12000" placeholder="यहाँ अपना टेक्स्ट लिखें… / Type your text here…" required></textarea>
+    </label>
+    <div class="voice-controls">
+      <label class="voice-field" for="voiceLanguage">Language
+        <select id="voiceLanguage">
+          <option value="auto">Auto / Device default</option>
+          <option value="hi-IN">Hindi (हिन्दी)</option>
+          <option value="en-IN">English (India)</option>
+          <option value="en-US">English (US)</option>
+        </select>
+      </label>
+      <label class="voice-field" for="voiceChoice">Available device voice
+        <select id="voiceChoice"><option value="">Loading voices…</option></select>
+      </label>
+      <label class="voice-field" for="voiceRate">Speaking speed
+        <div class="voice-range-row"><input id="voiceRate" type="range" min="0.6" max="1.5" step="0.1" value="1"><output id="voiceRateValue">1.0×</output></div>
+      </label>
+      <label class="voice-field" for="voicePitch">Voice pitch
+        <div class="voice-range-row"><input id="voicePitch" type="range" min="0.7" max="1.4" step="0.1" value="1"><output id="voicePitchValue">1.0</output></div>
+      </label>
+    </div>
+    <div class="voice-actions">
+      <button class="voice-btn primary" id="speakBtn" type="button">▶ Speak (Free)</button>
+      <button class="voice-btn" id="stopVoiceBtn" type="button">■ Stop</button>
+      <button class="voice-btn" id="mp3Btn" type="button">✨ Generate AI MP3</button>
+    </div>
+    <div class="voice-status" id="voiceStatus" role="status" aria-live="polite">Free browser voice is ready to use. Available voices depend on your device/browser.</div>
+    <audio id="generatedAudio" controls hidden style="width:100%"></audio>
+    <a id="downloadAudio" class="voice-btn" hidden download="nexaai-voice.mp3" style="width:max-content">⬇ Download generated audio</a>
+  </form>
+  <div class="voice-note"><strong>About AI MP3:</strong> the premium button needs a server endpoint at <code>/api/tts</code> that returns audio bytes. Do not put a private AI API key in this public HTML file. Until a backend is configured, the free browser speech feature works, but AI MP3 generation will show a setup message.</div>
+</section>
+
 <main id="tools">
   <div class="section-head"><div><h2>Explore AI tools</h2><p>Choose a category or search for what you need.</p></div></div>
   <div class="filters" aria-label="Filter by category">
@@ -86,6 +149,151 @@ function update(){const q=input.value.trim().toLowerCase();let count=0;cards.for
 filters.forEach(btn=>btn.addEventListener('click',()=>{category=btn.dataset.category;filters.forEach(b=>b.classList.toggle('active',b===btn));update()}));
 document.getElementById('searchForm').addEventListener('submit',e=>{e.preventDefault();update();document.getElementById('tools').scrollIntoView({behavior:'smooth'})});
 input.addEventListener('input',update);document.getElementById('year').textContent=new Date().getFullYear();
+
+// NexaAI Voice Studio: free browser speech + optional secure backend for AI MP3.
+(() => {
+  const textBox = document.getElementById('voiceText');
+  const language = document.getElementById('voiceLanguage');
+  const voiceChoice = document.getElementById('voiceChoice');
+  const rate = document.getElementById('voiceRate');
+  const pitch = document.getElementById('voicePitch');
+  const rateValue = document.getElementById('voiceRateValue');
+  const pitchValue = document.getElementById('voicePitchValue');
+  const status = document.getElementById('voiceStatus');
+  const audio = document.getElementById('generatedAudio');
+  const download = document.getElementById('downloadAudio');
+  let availableVoices = [];
+  let audioObjectUrl = '';
+
+  function setStatus(message, type = '') {
+    status.textContent = message;
+    status.className = 'voice-status' + (type ? ' ' + type : '');
+  }
+
+  function refreshVoices() {
+    if (!('speechSynthesis' in window)) {
+      voiceChoice.innerHTML = '<option value="">Browser speech not supported</option>';
+      document.getElementById('speakBtn').disabled = true;
+      setStatus('This browser does not support speech synthesis. Try a recent version of Chrome.', 'error');
+      return;
+    }
+    availableVoices = window.speechSynthesis.getVoices();
+    const previous = voiceChoice.value;
+    voiceChoice.replaceChildren();
+    const auto = document.createElement('option');
+    auto.value = '';
+    auto.textContent = 'Auto select best match';
+    voiceChoice.appendChild(auto);
+    availableVoices.forEach((voice, index) => {
+      const option = document.createElement('option');
+      option.value = String(index);
+      option.textContent = `${voice.name} (${voice.lang})${voice.default ? ' — Default' : ''}`;
+      voiceChoice.appendChild(option);
+    });
+    if (previous && Number(previous) < availableVoices.length) voiceChoice.value = previous;
+    if (!availableVoices.length) setStatus('No device voices found yet. Check your phone language/text-to-speech settings and reload.', 'error');
+  }
+
+  function chosenVoice() {
+    const selected = voiceChoice.value;
+    if (selected !== '') return availableVoices[Number(selected)] || null;
+    const lang = language.value;
+    if (lang === 'auto') return availableVoices.find(v => v.default) || availableVoices[0] || null;
+    const prefix = lang.toLowerCase().split('-')[0];
+    return availableVoices.find(v => v.lang.toLowerCase() === lang.toLowerCase())
+      || availableVoices.find(v => v.lang.toLowerCase().startsWith(prefix))
+      || null;
+  }
+
+  rate.addEventListener('input', () => rateValue.textContent = Number(rate.value).toFixed(1) + '×');
+  pitch.addEventListener('input', () => pitchValue.textContent = Number(pitch.value).toFixed(1));
+
+  language.addEventListener('change', () => {
+    const match = availableVoices.find(v => v.lang.toLowerCase() === language.value.toLowerCase())
+      || availableVoices.find(v => v.lang.toLowerCase().startsWith(language.value.split('-')[0].toLowerCase()));
+    if (match) voiceChoice.value = String(availableVoices.indexOf(match));
+    else voiceChoice.value = '';
+  });
+
+  document.getElementById('speakBtn').addEventListener('click', () => {
+    const text = textBox.value.trim();
+    if (!text) return setStatus('Please enter some text first.', 'error');
+    if (!('speechSynthesis' in window)) return setStatus('Speech synthesis is not supported in this browser.', 'error');
+    window.speechSynthesis.cancel();
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voice = chosenVoice();
+    if (voice) {
+      utterance.voice = voice;
+      utterance.lang = voice.lang;
+    } else {
+      utterance.lang = language.value === 'auto' ? 'en-US' : language.value;
+      if (language.value !== 'auto') setStatus('No matching voice found on this device; trying the selected language with the default voice.');
+    }
+    utterance.rate = Number(rate.value);
+    utterance.pitch = Number(pitch.value);
+    utterance.onstart = () => setStatus('Speaking…', 'success');
+    utterance.onend = () => setStatus('Finished speaking. Free browser speech does not create an MP3 file.', 'success');
+    utterance.onerror = () => setStatus('Could not play this voice. Try another device voice.', 'error');
+    window.speechSynthesis.speak(utterance);
+  });
+
+  document.getElementById('stopVoiceBtn').addEventListener('click', () => {
+    if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+    setStatus('Speech stopped.');
+  });
+
+  document.getElementById('mp3Btn').addEventListener('click', async () => {
+    const text = textBox.value.trim();
+    if (!text) return setStatus('Please enter some text first.', 'error');
+    const button = document.getElementById('mp3Btn');
+    button.disabled = true;
+    setStatus('Checking AI voice service…');
+    audio.hidden = true;
+    download.hidden = true;
+    try {
+      // Configure a secure server endpoint that returns audio/mpeg bytes.
+      const response = await fetch('/api/tts', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          text,
+          language: language.value,
+          voice: voiceChoice.value ? (availableVoices[Number(voiceChoice.value)]?.name || '') : '',
+          rate: Number(rate.value),
+          pitch: Number(pitch.value)
+        })
+      });
+      if (!response.ok) {
+        if (response.status === 404 || response.status === 405) {
+          throw new Error('AI MP3 is not connected yet. A secure /api/tts backend is required. Use “Speak (Free)” for now.');
+        }
+        throw new Error('AI voice service returned an error (' + response.status + '). Check your backend setup.');
+      }
+      const blob = await response.blob();
+      if (!blob.size) throw new Error('The AI voice service returned an empty audio file.');
+      if (audioObjectUrl) URL.revokeObjectURL(audioObjectUrl);
+      audioObjectUrl = URL.createObjectURL(blob);
+      audio.src = audioObjectUrl;
+      audio.hidden = false;
+      download.href = audioObjectUrl;
+      const type = blob.type || '';
+      download.download = type.includes('wav') ? 'nexaai-voice.wav' : 'nexaai-voice.mp3';
+      download.hidden = false;
+      setStatus('AI audio generated. Play it here or download the audio file.', 'success');
+    } catch (error) {
+      setStatus(error.message || 'Could not connect to the AI voice service.', 'error');
+    } finally {
+      button.disabled = false;
+    }
+  });
+
+  refreshVoices();
+  if ('speechSynthesis' in window) {
+    window.speechSynthesis.addEventListener?.('voiceschanged', refreshVoices);
+    window.setTimeout(refreshVoices, 500);
+  }
+})();
+
 </script>
 </body>
 </html>
